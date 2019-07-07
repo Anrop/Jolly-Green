@@ -1,6 +1,6 @@
 /* == TASKMASTER ===============================================================================
   
-  Version 0.35
+  Version 0.39
   Author: Shuko (shuko@quakenet, miika@miikajarvinen.fi)
   Contributors: cuel, galzohar, zuff
   Forum: http://forums.bistudio.com/showthread.php?160974-SHK_Taskmaster
@@ -38,6 +38,8 @@
         Type        string    Marker type. Optional, default is "selector_selectedMission".
         Color       string    Marker color. Optional, default is red.
         Text        string    Marker text.
+        Shape       string    Marker shape: Icon, Ellipse, Rectangle
+        Size        number or array     Marker size. If number given, it's used for both X and Y dimension.
       State         string    Task state of the newly created task. Default is "created".
       Destination   object/position/marker   Place to create task destination (game's built-in waypoint/marker). If an object is given, setSimpleTaskTarget command is used, attaching the destination to it.
       
@@ -91,11 +93,18 @@
   
   == Checking task status ======================================================================
   
+    SHK_Taskmaster_areCompleted
+      This function can be used to check if multiple tasks are completed. Task is considered completed with states
+      succeeded, failed and canceled. Function returns a boolean (true/false) value.
+  
+      Example: ["Task1","Task2"] call SHK_Taskmaster_isCompleted
+  
     SHK_Taskmaster_isCompleted
       This function can be used to check if a task is completed. Task is considered completed with states
       succeeded, failed and canceled. Function returns a boolean (true/false) value.
   
       Example: "Task1" call SHK_Taskmaster_isCompleted
+      Multiple tasks: ["Task1","Task2"] call SHK_Taskmaster_isCompleted
     
     SHK_Taskmaster_getAssigned
       Returns list of tasks which have "assigned" as their state.
@@ -118,6 +127,12 @@
       
       Example: "Task1" call SHK_Taskmaster_hasTask
       
+    SHK_Taskmaster_setCurrentLocal
+      Sets the given task as the current task.
+      
+      Example: "Task1" call SHK_Taskmaster_setCurrentLocal;
+      Multiplayer Example: ["Task1","SHK_Taskmaster_setCurrentLocal",true,true] call BIS_fnc_MP
+      
     SHK_Taskmaster_addNote (client only)
       Creates a briefing note. This can only be used on client side, and it's not broadcasted for
       other players.
@@ -135,6 +150,10 @@
     calls, for example "sleep 1;".
   
   == Version history ======================================================================
+    0.39  Added: More marker options.
+    0.38  Added: SHK_Taskmaster_isCompleted now takes multiple tasks are parameter. Also, added _areCompleted as a wrapper function.
+    0.37  Changed: Task creation order was reversed in Arma 2. It was changed in Arma 3. Changed the order in script to be correct with A3. Automatic current task assignment was removed, use the SHK_Taskmaster_setCurrentLocal.
+    0.36  Added: SHK_Taskmaster_setCurrentLocal can now be used to set a task as current task. Only works locally, so use with BIS_fnc_MP.
     0.35  Changed: Faction faction list to A3.
     0.34  Switch to Arma 3, changed hint notification to use the A3 command.
     0.33  Added: Now it's possible to add marker texts.
@@ -203,6 +222,7 @@ DEBUG = false;
          If marker exists, it will be shown or hidden depending if the unit has the task.
       In: array     ["Name","Title","Desc",[Marker],"State",Destination]
     */
+    
     private ["_handle","_handles","_name","_state","_marker","_dest"];
     _handles = [];
     _name = _this select 0;
@@ -215,9 +235,10 @@ DEBUG = false;
         _handle = _x createsimpletask [_name];
         _handle setsimpletaskdescription [(_this select 2),(_this select 1),""];
         _handle settaskstate _state;
-        if (_state in ["created","assigned"]) then {
-          _x setcurrenttask _handle;
-        };
+        
+        //if (_state in ["created","assigned"]) then {
+          //_x setcurrenttask _handle;
+        //};
         switch (toupper(typename _dest)) do {
           case "OBJECT": { _handle setsimpletasktarget [_dest,true] };
           case "STRING": { _handle setsimpletaskdestination (getmarkerpos _dest) };
@@ -234,32 +255,62 @@ DEBUG = false;
               if (typename (_marker select 0) == typename "") then {
                 _marker = [_marker];
               };
-              private ["_m","_t","_c","_txt"];
+              private ["_m","_type","_color","_txt","_shape","_size"];
               {
                 _m = createmarkerlocal [(_x select 0),(_x select 1)];
-                _m setmarkershapelocal "ICON";
                 
-                _t = "selector_selectedMission";
+                _type = "selector_selectedMission";
                 if (count _x > 2) then {
                   private "_tmp";
                   _tmp = (_x select 2); 
                   if (_tmp != "") then {
-                    _t = _tmp;
+                    _type = _tmp;
                   };
                 };
-                _m setmarkertypelocal _t;
+                _m setmarkertypelocal _type;
                 
-                _c = "ColorRed";
+                _color = "ColorRed";
                 if (count _x > 3) then {
                   private "_tmp";
                   _tmp = (_x select 3);
                   if (_tmp != "") then {
-                    _c = _tmp;
+                    _color = _tmp;
                   };
                 };
-                _m setmarkercolorlocal _c;
+                _m setmarkercolorlocal _color;
                 
-                if (count _x > 4) then {_m setmarkertextlocal (_x select 4)};
+                _txt = "";
+                if (count _x > 4) then {
+                  private "_tmp";
+                  _tmp = (_x select 4);
+                  if (_tmp != "") then {
+                    _color = _tmp;
+                  };
+                };
+                _m setmarkertextlocal _txt;
+                
+                _shape = "ICON";
+                if (count _x > 5) then {
+                  private "_tmp";
+                  _tmp = (_x select 5);
+                  if (_tmp != "") then {
+                    _shape = _tmp;
+                  };
+                };
+                _m setmarkershapelocal _shape;
+                
+                _size = [1,1];
+                if (count _x > 6) then {
+                  private "_tmp";
+                  _tmp = (_x select 6);
+                  if (typeName _tmp == typeName 0) then {
+                    _tmp = [_tmp,_tmp];
+                  };
+                  if !([_tmp,[1,1]] call BIS_fnc_areEqual) then {
+                    _size = _tmp;
+                  };
+                };
+                _m setmarkersizelocal _size;
                 
               } foreach _marker;
             };
@@ -268,6 +319,16 @@ DEBUG = false;
       };
     } foreach (if ismultiplayer then {playableunits} else {switchableunits});
     SHK_Taskmaster_TasksLocal set [count SHK_Taskmaster_TasksLocal,[_name,_state,_handles]];
+  };
+  SHK_Taskmaster_areCompleted = {
+    /*   Checks if tasks are completed.
+     In: array of strings     Task names
+    Out: boolean
+    */
+    private ["_b"];
+    _b = false;
+    _b = _this call SHK_Taskmaster_isCompleted;
+    _b;
   };
   SHK_Taskmaster_assign = {
     /*   Changes task's state to assigned.
@@ -421,21 +482,59 @@ DEBUG = false;
     } foreach SHK_Taskmaster_TasksLocal;
     _b;
   };
-
   SHK_Taskmaster_isCompleted = {
-    private "_b";
+    /*   Checks if task(s) are completed.
+     In: string               Task name
+     In: array of strings     Task names
+    Out: boolean
+    */
+    private ["_b","_t","_i","_foreachIndex"];
     _b = false;
+    if (typeName _this == typeName "") then {
+      _this = [_this];
+    };
+    
     {
-      if (_this == (_x select 0)) then {
-        if ((_x select 5) in ["succeeded","failed","canceled"]) then {
-          _b = true;
+      _t = _x;
+      _i = _foreachIndex;
+      {
+        if (_t == (_x select 0)) then {
+          if ((_x select 5) in ["succeeded","failed","canceled"]) then {
+            _this set [_i,true];
+          } else {
+            _this set [_i,false]
+          };
         };
-      };
-    } foreach SHK_Taskmaster_Tasks;
+      } foreach SHK_Taskmaster_Tasks;
+    } foreach _this;
+    
+    if ({_x} count _this == count _this) then {
+      _b = true;
+    };
+    
     _b;
   };
+  SHK_Taskmaster_setCurrentLocal = {
+    /* Set the given task as current task. */
+    {
+      if (_this == (_x select 0)) exitwith {
+        private "_handle";
+        {
+          _handle = _x;
+          {
+            if (_handle in (simpletasks _x)) then {
+              _x setcurrenttask _handle;
+              
+              if (_x == player) then {
+                if (SHK_Taskmaster_showHints) then { [_handle,"Assigned"] call SHK_Taskmaster_showHint };
+              };
+            };
+          } foreach (if ismultiplayer then {playableunits} else {switchableunits});
+        } foreach (_x select 2);
+      };
+    } foreach SHK_Taskmaster_TasksLocal;
+  };
   SHK_Taskmaster_showHint = {
-    private "_p";
     private ["_p", "_taskCase"];
     _p = switch (tolower (_this select 1)) do {
       case "created": {   _taskCase = "TaskCreated" };
@@ -529,9 +628,9 @@ if isserver then {
     if (count _this > 0) then {
       private ["_task","_tasks","_i"];
       _tasks = _this select 0;
-      for [{_i=(count _tasks - 1)},{_i>-1},{_i=_i-1}] do {
-        (_tasks select _i) call SHK_Taskmaster_add;
-      };
+      {
+        _x call SHK_Taskmaster_add;
+      } foreach _tasks;
     };
   };
   publicvariable "SHK_Taskmaster_Tasks";
@@ -571,6 +670,7 @@ if !isdedicated then {
     private "_sh";
     _sh = SHK_Taskmaster_Tasks spawn SHK_Taskmaster_handleEvent;
     waituntil {scriptdone _sh};
+    
     SHK_Taskmaster_showHints = true;
     SHK_Taskmaster_initDone = true;
 

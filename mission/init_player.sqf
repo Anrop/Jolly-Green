@@ -1,20 +1,3 @@
-switch PARAMS_Rain do {
-  case 0: { 0 setOvercast 0.57; 0 setRain 0 };
-  case 1: { 0 setOvercast 1; 0 setRain 0.2 };
-  case 2: { 0 setOvercast 1; 0 setRain 0.4 };
-  case 3: { 0 setOvercast 1; 0 setRain 0.6 };
-  case 4: { 0 setOvercast 1; 0 setRain 0.8 };
-  case 5: { 0 setOvercast 1; 0 setRain 1 };
-};
-switch PARAMS_Fog do {
-  case 0: { 0 setFog 0 };
-  case 1: { 0 setFog 0.2 };
-  case 2: { 0 setFog 0.4 };
-  case 3: { 0 setFog 0.6 };
-  case 4: { 0 setFog 0.8 };
-  case 5: { 0 setFog 1 };
-};
-
 waituntil {!isnull player};
 
 if (PARAMS_Viewdistance == 0) then {

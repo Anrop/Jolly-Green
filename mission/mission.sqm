@@ -10,13 +10,13 @@ class Mission
 		"a3_characters_f_gamma",
 		"a3_characters_f_beta",
 		"A3_Soft_F_MRAP_02",
-		"A3_Soft_F_Quadbike"
+		"A3_Soft_F_Quadbike",
+		"a3_characters_f"
 	};
 	addOnsAuto[]=
 	{
 		"A3_Characters_F_BLUFOR",
-		"a3_characters_f_gamma",
-		"a3_characters_f_beta",
+		"a3_characters_f",
 		"A3_Air_F_Beta_Heli_Transport_01",
 		"A3_Structures_F_Mil_Helipads",
 		"a3_map_altis"
