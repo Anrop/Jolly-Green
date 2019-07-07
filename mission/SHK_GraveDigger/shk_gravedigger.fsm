@@ -1,0 +1,135 @@
+/*%FSM<COMPILE "C:\Program Files (x86)\Bohemia Interactive\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, shk_gravedigger">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"start",0,250,-239.552597,-247.419678,-149.552673,-197.419647,0.000000,"start"};
+item1[] = {"true",8,218,-238.969101,-174.798920,-148.969101,-124.798920,0.000000,"true"};
+item2[] = {"count",2,250,-240.663803,-99.728058,-150.663727,-49.728012,0.000000,"count"};
+item3[] = {"under_bodylimit",4,218,-280.994812,-2.724662,-190.995209,47.275269,1.000000,"under" \n "bodylimit"};
+item4[] = {"bodylimit_reache",4,218,-189.891525,-2.542572,-99.891205,47.457657,0.000000,"bodylimit" \n "reached"};
+item5[] = {"delay",2,250,-390.732666,-4.645531,-300.732666,45.354179,0.000000,"delay"};
+item6[] = {"delay_done",4,218,-390.453461,-99.498863,-300.453369,-49.498909,0.000000,"delay done"};
+item7[] = {"delete",2,4346,-78.927803,-1.653457,11.071697,48.346573,0.000000,"delete"};
+item8[] = {"true",8,218,-78.848183,-99.461876,11.151836,-49.461819,0.000000,"true"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,4};
+link4[] = {3,5};
+link5[] = {4,7};
+link6[] = {5,6};
+link7[] = {6,2};
+link8[] = {7,8};
+link9[] = {8,2};
+globals[] = {0.000000,0,0,0,0,640,480,1,18,6316128,1,-398.877991,201.122009,221.399170,-299.588501,713,633,1};
+window[] = {0,-1,-1,-1,-1,964,198,1581,198,1,731};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "shk_gravedigger";
+  class States
+  {
+    /*%FSM<STATE "start">*/
+    class start
+    {
+      name = "start";
+      init = /*%FSM<STATEINIT""">*/"private [""_bodyLimit"",""_count"",""_delay"",""_delayMargin"",""_distance"",""_time""];" \n
+       "_delay = _this select 0;" \n
+       "_delayMargin = _this select 1;" \n
+       "_distance = _this select 2;" \n
+       "_bodyLimit = _this select 3;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "true">*/
+        class true
+        {
+          priority = 0.000000;
+          to="count";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "count">*/
+    class count
+    {
+      name = "count";
+      init = /*%FSM<STATEINIT""">*/"_count = count SHK_GraveDigger_Dead"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "under_bodylimit">*/
+        class under_bodylimit
+        {
+          priority = 1.000000;
+          to="delay";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_count < _bodyLimit"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "bodylimit_reache">*/
+        class bodylimit_reache
+        {
+          priority = 0.000000;
+          to="delete";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "delay">*/
+    class delay
+    {
+      name = "delay";
+      init = /*%FSM<STATEINIT""">*/"_time = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "delay_done">*/
+        class delay_done
+        {
+          priority = 0.000000;
+          to="count";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(time - _time) >= (1 + _delayMargin)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "delete">*/
+    class delete
+    {
+      name = "delete";
+      init = /*%FSM<STATEINIT""">*/"[_delay,_distance,_bodyLimit] call SHK_GraveDigger_fnc_delete;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "true">*/
+        class true
+        {
+          priority = 0.000000;
+          to="count";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="start";
+  finalStates[] =
+  {
+  };
+};
+/*%FSM</COMPILE>*/

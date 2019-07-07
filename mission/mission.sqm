@@ -1,0 +1,506 @@
+version=12;
+class Mission
+{
+	addOns[]=
+	{
+		"A3_Air_F_Beta_Heli_Transport_01",
+		"A3_Structures_F_Mil_Helipads",
+		"a3_map_altis",
+		"A3_Characters_F_BLUFOR",
+		"a3_characters_f_gamma",
+		"a3_characters_f_beta",
+		"A3_Soft_F_MRAP_02",
+		"A3_Soft_F_Quadbike"
+	};
+	addOnsAuto[]=
+	{
+		"A3_Characters_F_BLUFOR",
+		"a3_characters_f_gamma",
+		"a3_characters_f_beta",
+		"A3_Air_F_Beta_Heli_Transport_01",
+		"A3_Structures_F_Mil_Helipads",
+		"a3_map_altis"
+	};
+	randomSeed=4637042;
+	class Intel
+	{
+		briefingName="CO 11 CSAR Jolly Green 28";
+		overviewText="Rescue crew and troops of a downed helicopter.";
+		resistanceWest=0;
+		startWeather=0.56999999;
+		startWind=0.099999994;
+		startWaves=0.099999994;
+		forecastWeather=0.56999999;
+		forecastWind=0.099999994;
+		forecastWaves=0.099999994;
+		rainForced=1;
+		wavesForced=1;
+		windForced=1;
+		year=2035;
+		month=6;
+		day=24;
+		hour=12;
+		minute=0;
+		startFogBase=0.001;
+		forecastFogBase=0.001;
+		startFogDecay=0.0049999999;
+		forecastFogDecay=0.0049999999;
+	};
+	class Groups
+	{
+		items=5;
+		class Item0
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=3;
+				class Item0
+				{
+					position[]={14789.833,17.889999,16507.01};
+					azimut=-359.41599;
+					id=0;
+					side="WEST";
+					vehicle="B_Helipilot_F";
+					player="PLAYER COMMANDER";
+					leader=1;
+					rank="CAPTAIN";
+					skill=0.60000002;
+					text="heliPilot";
+					init="gPilot = group this; gPilot setGroupid [""CSAR""];";
+					description="CSAR Ghost Hawk Pilot";
+				};
+				class Item1
+				{
+					position[]={14794.774,17.889999,16504.52};
+					azimut=-376.77802;
+					id=1;
+					side="WEST";
+					vehicle="B_helicrew_F";
+					player="PLAY CDG";
+					rank="LIEUTENANT";
+					skill=0.60000002;
+					text="heliChief";
+					init="gPilot = group this; gPilot setGroupid [""CSAR""];";
+					description="CSAR Ghost Hawk Crew Chief";
+				};
+				class Item2
+				{
+					position[]={14784.589,17.889999,16502.6};
+					azimut=-348.142;
+					id=2;
+					side="WEST";
+					vehicle="B_helicrew_F";
+					player="PLAY CDG";
+					rank="CORPORAL";
+					skill=0.60000002;
+					text="heliGunner";
+					init="gPilot = group this; gPilot setGroupid [""CSAR""];";
+					description="CSAR Ghost Hawk Door Gunner";
+				};
+			};
+		};
+		class Item1
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=8;
+				class Item0
+				{
+					position[]={14873.929,17.92,16563.813};
+					special="CARGO";
+					id=3;
+					side="WEST";
+					vehicle="B_Soldier_SL_F";
+					player="PLAY CDG";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.46666664;
+					init="gInf = group this; this moveincargo heliWreck; gInf setGroupid [""Infantry""];this unassignItem ""ItemGPS"";  this unassignItem ""ItemMap"";  this unassignItem ""ItemCompass"";  this removeItem ""ItemGPS"";  this removeitem ""ItemMap"";  this removeitem ""ItemCompass"";  ";
+					description="Infantry, Squad Leader";
+				};
+				class Item1
+				{
+					position[]={14878.929,17.92,16558.813};
+					special="CARGO";
+					id=4;
+					side="WEST";
+					vehicle="B_soldier_AR_F";
+					player="PLAY CDG";
+					rank="CORPORAL";
+					skill=0.46666664;
+					init="gInf = group this; this moveincargo heliWreck; gInf setGroupid [""Infantry""];this unassignItem ""ItemGPS"";  this unassignItem ""ItemMap"";  this unassignItem ""ItemCompass"";  this removeItem ""ItemGPS"";  this removeitem ""ItemMap"";  this removeitem ""ItemCompass"";  ";
+					description="Autorifleman";
+				};
+				class Item2
+				{
+					position[]={14883.929,17.92,16553.813};
+					special="CARGO";
+					id=5;
+					side="WEST";
+					vehicle="B_soldier_AT_F";
+					player="PLAY CDG";
+					rank="CORPORAL";
+					skill=0.46666664;
+					init="gInf = group this; this moveincargo heliWreck; gInf setGroupid [""Infantry""];this unassignItem ""ItemGPS"";  this unassignItem ""ItemMap"";  this unassignItem ""ItemCompass"";  this removeItem ""ItemGPS"";  this removeitem ""ItemMap"";  this removeitem ""ItemCompass"";  ";
+					description="Missile Specialist (AT)";
+				};
+				class Item3
+				{
+					position[]={14863.929,17.910324,16553.813};
+					id=6;
+					side="WEST";
+					vehicle="B_soldier_AAT_F";
+					player="PLAY CDG";
+					rank="CORPORAL";
+					skill=0.33333331;
+					init="gInf = group this; this moveincargo heliWreck; gInf setGroupid [""Infantry""];this unassignItem ""ItemGPS"";  this unassignItem ""ItemMap"";  this unassignItem ""ItemCompass"";  this removeItem ""ItemGPS"";  this removeitem ""ItemMap"";  this removeitem ""ItemCompass"";  ";
+					description="Asst. Missile Specialist (AT)";
+				};
+				class Item4
+				{
+					position[]={14888.929,17.957911,16548.813};
+					special="CARGO";
+					id=7;
+					side="WEST";
+					vehicle="B_Soldier_TL_F";
+					player="PLAY CDG";
+					rank="SERGEANT";
+					skill=0.2;
+					init="gInf = group this; this moveincargo heliWreck; gInf setGroupid [""Infantry""];this unassignItem ""ItemGPS"";  this unassignItem ""ItemMap"";  this unassignItem ""ItemCompass"";  this removeItem ""ItemGPS"";  this removeitem ""ItemMap"";  this removeitem ""ItemCompass"";  ";
+					description="Team Leader";
+				};
+				class Item5
+				{
+					position[]={14858.929,17.91,16548.813};
+					id=8;
+					side="WEST";
+					vehicle="B_soldier_AR_F";
+					player="PLAY CDG";
+					skill=0.2;
+					init="gInf = group this; this moveincargo heliWreck; gInf setGroupid [""Infantry""];this unassignItem ""ItemGPS"";  this unassignItem ""ItemMap"";  this unassignItem ""ItemCompass"";  this removeItem ""ItemGPS"";  this removeitem ""ItemMap"";  this removeitem ""ItemCompass"";  ";
+					description="Autorifleman";
+				};
+				class Item6
+				{
+					position[]={14893.929,18.056906,16543.813};
+					special="CARGO";
+					id=9;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					skill=0.2;
+					init="gInf = group this; this moveincargo heliWreck; gInf setGroupid [""Infantry""];this unassignItem ""ItemGPS"";  this unassignItem ""ItemMap"";  this unassignItem ""ItemCompass"";  this removeItem ""ItemGPS"";  this removeitem ""ItemMap"";  this removeitem ""ItemCompass"";  ";
+					description="Combat Life Saver";
+				};
+				class Item7
+				{
+					position[]={14873.813,17.911039,16545.779};
+					id=10;
+					side="WEST";
+					vehicle="B_Pilot_F";
+					player="PLAY CDG";
+					rank="CORPORAL";
+					skill=0.2;
+					init="gInf = group this; this moveincargo heliWreck; gInf setGroupid [""Infantry""]; removeBackpack this;this unassignItem ""ItemGPS"";  this unassignItem ""ItemMap"";  this unassignItem ""ItemCompass"";  this removeItem ""ItemGPS"";  this removeitem ""ItemMap"";  this removeitem ""ItemCompass"";";
+					description="Pilot of the downed helo";
+				};
+			};
+		};
+		class Item2
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14823.169,17.854227,16599.09};
+					id=11;
+					side="WEST";
+					vehicle="B_Pilot_F";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.2;
+					init="this moveInTurret [heliWreck,[0]]; this setdamage 1;this removeitem ""ItemMap"";this removeitem ""ItemCompass"";this removeItem ""ItemGPS"";";
+				};
+			};
+		};
+		class Item3
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14819.218,17.85,16599.109};
+					id=12;
+					side="WEST";
+					vehicle="B_Pilot_F";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.2;
+					init="this moveInTurret [heliWreck,[1]]; this setdamage 1;this removeitem ""ItemMap"";this removeitem ""ItemCompass"";this removeItem ""ItemGPS"";";
+				};
+			};
+		};
+		class Item4
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14826.967,17.857473,16599.395};
+					id=13;
+					side="WEST";
+					vehicle="B_Pilot_F";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.2;
+					init="this moveInTurret [heliWreck,[2]]; this setdamage 1;this removeitem ""ItemMap"";this removeitem ""ItemCompass"";this removeItem ""ItemGPS"";";
+				};
+			};
+		};
+	};
+	class Vehicles
+	{
+		items=3;
+		class Item0
+		{
+			position[]={14779.899,17.902096,16596.984};
+			id=14;
+			side="EMPTY";
+			vehicle="B_Heli_Transport_01_camo_F";
+			skill=0.60000002;
+			health=0.22855888;
+			fuel=0;
+			ammo=0.15708899;
+			text="heliWreck";
+		};
+		class Item1
+		{
+			position[]={14789.6,17.879467,16525.742};
+			azimut=-361.711;
+			id=15;
+			side="EMPTY";
+			vehicle="Land_HelipadCircle_F";
+			skill=0.60000002;
+			text="INIT";
+			init="call compile preprocessFile ""init_start.sqf""; SHK_AllAboard = false;";
+		};
+		class Item2
+		{
+			position[]={14788.246,17.877663,16527.326};
+			azimut=-226.37199;
+			id=16;
+			side="EMPTY";
+			vehicle="B_Heli_Transport_01_camo_F";
+			lock="UNLOCKED";
+			skill=0.60000002;
+			text="heli";
+		};
+	};
+	class Markers
+	{
+		items=3;
+		class Item0
+		{
+			position[]={15099.567,0.17367993,15627.121};
+			name="mArea";
+			markerType="RECTANGLE";
+			type="Empty";
+			a=13000;
+			b=10000;
+		};
+		class Item1
+		{
+			position[]={14782.666,17.91,16225.988};
+			name="mBL";
+			markerType="ELLIPSE";
+			type="Empty";
+			colorName="ColorRed";
+			a=5000;
+			b=5000;
+		};
+		class Item2
+		{
+			position[]={14769.767,17.889999,16517.205};
+			name="mStart";
+			type="b_air";
+		};
+	};
+	class Sensors
+	{
+		items=5;
+		class Item0
+		{
+			position[]={14770.691,17.91,16599.52};
+			a=30;
+			b=30;
+			activationBy="ANY";
+			interruptable=1;
+			age="UNKNOWN";
+			expCond="!(heliWreck in thislist)";
+			expActiv="SHK_heliMoved = true; publicVariable ""SHK_heliMoved""";
+			class Effects
+			{
+			};
+		};
+		class Item1
+		{
+			position[]={14824.362,17.889999,16496.805};
+			a=0;
+			b=0;
+			interruptable=1;
+			age="UNKNOWN";
+			expCond="({vehicle _x == heli && alive _x} count (units gInf)) == ({alive _x} count (units gInf))";
+			expActiv="SHK_allAboard = true; publicVariable ""SHK_allAboard""";
+			class Effects
+			{
+			};
+		};
+		class Item2
+		{
+			position[]={14765.185,17.870012,16407.676};
+			a=900;
+			b=300;
+			angle=315;
+			rectangular=1;
+			activationBy="ANY";
+			repeating=1;
+			interruptable=1;
+			age="UNKNOWN";
+			name="tAirfield";
+			class Effects
+			{
+			};
+		};
+		class Item3
+		{
+			position[]={14844.486,17.881002,16499.125};
+			a=0;
+			b=0;
+			interruptable=1;
+			age="UNKNOWN";
+			expCond="time > 0";
+			class Effects
+			{
+				track="Track10_StageB_action";
+			};
+		};
+		class Item4
+		{
+			position[]={14888.401,17.879269,16497.367};
+			a=20000;
+			b=20000;
+			activationBy="WEST";
+			activationType="EAST D";
+			interruptable=1;
+			age="UNKNOWN";
+			expActiv="5 fadeMusic 0";
+			class Effects
+			{
+			};
+		};
+	};
+};
+class Intro
+{
+	addOns[]=
+	{
+		"a3_map_altis"
+	};
+	addOnsAuto[]=
+	{
+		"a3_map_altis"
+	};
+	randomSeed=5431241;
+	class Intel
+	{
+		timeOfChanges=1800.0002;
+		startWeather=0.30000001;
+		startWind=0.1;
+		startWaves=0.1;
+		forecastWeather=0.30000001;
+		forecastWind=0.1;
+		forecastWaves=0.1;
+		forecastLightnings=0.1;
+		year=2035;
+		month=6;
+		day=24;
+		hour=12;
+		minute=0;
+		startFogBase=0.001;
+		forecastFogBase=0.001;
+		startFogDecay=0.0049999999;
+		forecastFogDecay=0.0049999999;
+	};
+};
+class OutroWin
+{
+	addOns[]=
+	{
+		"a3_map_altis"
+	};
+	addOnsAuto[]=
+	{
+		"a3_map_altis"
+	};
+	randomSeed=15780454;
+	class Intel
+	{
+		timeOfChanges=1800.0002;
+		startWeather=0.30000001;
+		startWind=0.1;
+		startWaves=0.1;
+		forecastWeather=0.30000001;
+		forecastWind=0.1;
+		forecastWaves=0.1;
+		forecastLightnings=0.1;
+		year=2035;
+		month=6;
+		day=24;
+		hour=12;
+		minute=0;
+		startFogBase=0.001;
+		forecastFogBase=0.001;
+		startFogDecay=0.0049999999;
+		forecastFogDecay=0.0049999999;
+	};
+};
+class OutroLoose
+{
+	addOns[]=
+	{
+		"a3_map_altis"
+	};
+	addOnsAuto[]=
+	{
+		"a3_map_altis"
+	};
+	randomSeed=858458;
+	class Intel
+	{
+		timeOfChanges=1800.0002;
+		startWeather=0.30000001;
+		startWind=0.1;
+		startWaves=0.1;
+		forecastWeather=0.30000001;
+		forecastWind=0.1;
+		forecastWaves=0.1;
+		forecastLightnings=0.1;
+		year=2035;
+		month=6;
+		day=24;
+		hour=12;
+		minute=0;
+		startFogBase=0.001;
+		forecastFogBase=0.001;
+		startFogDecay=0.0049999999;
+		forecastFogDecay=0.0049999999;
+	};
+};

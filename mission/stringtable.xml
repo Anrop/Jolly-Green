@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>  
+<Project name="CSAR Jolly Green 28 by Shuko"> 
+	<Package name="Mission"> 
+		<Container name="CSAR Jolly Green 28"> 
+			<Key ID="STR_CFG_PAPABEAR"> 
+				<German>MISSION MAKER</German>
+				<English>MISSION MAKER</English>
+				<Spanish>MISSION MAKER</Spanish>
+				<Italian>MISSION MAKER</Italian>
+				<French>MISSION MAKER</French>
+				<Polish>MISSION MAKER</Polish>
+				<Hungarian>MISSION MAKER</Hungarian>
+				<Czech>MISSION MAKER</Czech>
+				<Turkish>MISSION MAKER</Turkish>
+				<Russian>MISSION MAKER</Russian>
+			</Key>
+		</Container>
+	</Package>
+</Project>

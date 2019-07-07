@@ -1,0 +1,140 @@
+allowFunctionsLog=1;
+Author="Shuko";
+debriefing=1;
+disabledAI=1;
+loadScreen = "overview.paa";
+onLoadIntroTime = false;
+onLoadMission = "Combat Search and Rescue";
+onLoadMissionTime = false;
+onLoadName="CSAR Jolly Green 28";
+overviewPicture = "\a3\missions_f_gamma\data\img\faction_blufor_air_ca.paa";
+overviewText = "Combat Search and Rescue is sent to find the crew and troops of a downed helo.";
+respawn = 4;
+respawndelay = 5;
+showCompass=1;
+showGPS=0;
+showMap=1;
+showNotepad=1;
+showRadio=1;
+showWatch=1;
+
+class Header
+{
+  gameType = COOP;
+  minPlayers = 1;
+  maxPlayers = 11;
+};
+
+class Params
+{
+  class Hour {
+    title = "Hour";
+    values[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,99,19,20,21,22,23};
+    texts[] = {"0000","0100","0200","0300","0400","0500","0600","0700","0800","0900","1000","1100","1200","1300","1400","1500","1600","1700","1800","1830","1900","2000","2100","2200","2300"};
+    default = 99;
+  };
+  class Rain {
+    title = "Rain";
+    values[] = {0,1,2,3,4,5};
+    texts[] = {"None","Drizzle","Light","Moderate","Heavy","Downpour"};
+    default = 0;
+  };
+  class Fog {
+    title = "Fog";
+    values[] = {0,1,2,3,4,5};
+    texts[] = {"None","Light","Moderate","Heavy","Thick","Stevie Wonder"};
+    default = 0;
+  };
+  class Viewdistance {
+    title = "Viewdistance";
+    values[] = {0,1000,1500,2000,2500,3000,3500,4000};
+    texts[] = {"User defined","1000", "1500", "2000", "2500", "3000","3500","4000"};
+    default = 0;
+  };
+  class Difficulty {
+    title = "Difficulty";
+    values[] = {1,2,3,4,5};
+    texts[] = {"Hard", "Harder", "Hardest", "Nightmare", "KIA"};
+    default = 1;
+  };
+  class Map {
+    title = "Map";
+    values[] = {1,2,3};
+    texts[] = {"CSAR only", "Group leader", "Everyone"};
+    default = 2;
+  };
+  class Compass {
+    title = "Compass";
+    values[] = {1,2,3};
+    texts[] = {"CSAR only", "Group leader", "Everyone"};
+    default = 2;
+  };  
+};
+
+class CfgDebriefing
+{  
+	class End1
+	{
+		title = "Restart Mission";
+		subtitle = "";
+		description = "It's required to have players in both groups.";
+		pictureBackground = "overview.paa";
+		picture = "";
+		pictureColor[] = {0.6,0.3,0.0,1};
+	};
+	class End2
+	{
+		title = "Mission Successful";
+		subtitle = "";
+		description = "Job well done!";
+		pictureBackground = "overview.paa";
+		picture = "";
+		pictureColor[] = {0.6,0.3,0.0,1};
+	};
+	class End3
+	{
+		title = "Mission Failed";
+		subtitle = "";
+		description = "CSAR was not able to rescue the troops.";
+		pictureBackground = "overview.paa";
+		picture = "";
+		pictureColor[] = {0.6,0.3,0.0,1};
+	};
+};
+
+class RscStdText {
+  idc               = -1;
+  type              = 0;
+  style             = 0x02;
+  colorBackground[] = {0,0,0,0};
+  colorText[]       = {1,1,1,1};
+  font              = puristaMedium;
+  SizeEx            = 0.02;
+};
+class RscTitles {
+  titles[] = {"missionName"}; 
+
+  class missionName {
+    idd = -1;
+    movingEnable = 0;
+    duration     = 3;
+    fadein       = 1;
+    name         = "missionName";
+    controls[]={background,title};
+    
+    class background : RscStdText 
+    {
+      x = -1; y = -1;
+      w = 3; h = 3;
+      text   = "";
+    };
+    class title : RscStdText 
+    {
+      x = -0.25; y = 1;
+      w = 0.8; h = 0.1;
+      colorText[]={1,1,1,1};
+      SizeEx = 0.08;
+      text = "CSAR JOLLY GREEN 28";
+    };
+  };
+};

@@ -1,0 +1,3 @@
+cutText ["","WHITE OUT",5];
+~5
+_this execvm "spectator.sqf";
