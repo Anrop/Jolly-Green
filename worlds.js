@@ -25,6 +25,11 @@ module.exports = [
     type: 'desert'
   },
   {
+    name: 'psyfx_pht',
+    mission: 'psyfx_pht',
+    type: 'woodland'
+  },
+  {
     name: 'tanoa',
     mission: 'tanoa',
     type: 'woodland'
