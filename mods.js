@@ -64,5 +64,36 @@ module.exports = [
         O_Soldier_TL_F: 'CUP_O_RU_Soldier_TL'
       }
     }
+  },
+  {
+    name: 'Unsung',
+    suffix: '_unsung',
+    woodland: {
+      blufor: {
+        B_Heli_Transport_01_camo_F: 'uns_UH1H_m60_light',
+        B_helicrew_F: 'uns_pilot6',
+        B_Helipilot_F: 'uns_pilot5',
+        B_medic_F: 'uns_US_25ID_MED',
+        B_Pilot_F: 'uns_pilot5',
+        B_soldier_AAT_F: 'uns_US_25ID_AT',
+        B_soldier_AR_F: 'uns_US_25ID_HMG',
+        B_soldier_AT_F: 'uns_US_25ID_AT',
+        B_Soldier_SL_F: 'uns_US_25ID_SL',
+        B_Soldier_TL_F: 'uns_US_25ID_RTO'
+      },
+      redfor: {
+        '"OPF_F" >> "Infantry" >> "OIA_InfSquad"': '"UNSUNG_E_NVA" >> "NVA68Infantry" >> "NVA_68riflesquadone"',
+        O_APC_Tracked_02_cannon_F: 'uns_Type55_M40',
+        O_Heli_Light_02_unarmed_F: 'uns_Mi8T_VPAF',
+        O_medic_F: 'uns_men_NVA_68_MED',
+        O_MRAP_02_F: 'uns_Type55_LMG',
+        O_MRAP_02_hmg_F: 'uns_Type55_twinMG',
+        O_Soldier_AR_F: 'uns_men_NVA_68_HMG',
+        O_Soldier_F: 'uns_men_NVA_68_AS4',
+        O_Soldier_LAT_F: 'uns_men_NVA_68_AT2',
+        O_Soldier_SL_F: 'uns_men_NVA_68_off',
+        O_Soldier_TL_F: 'uns_men_NVA_68_RTO'
+      }
+    }
   }
 ]
