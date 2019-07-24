@@ -1,3 +1,4 @@
+const spawn = require('child_process').spawn
 const fs = require('fs-extra')
 const path = require('path')
 
@@ -7,6 +8,70 @@ const worlds = require('./worlds')
 const outputDirectory = 'build'
 const baseMissionDirectory = 'mission'
 const worldsDirectory = 'worlds'
+
+const pboPrefix = 'jolly_green'
+const configFileCfgPatches = `class CfgPatches
+{
+  class jolly_green_missions
+  {
+    units[] = {};
+    weapons[] = {};
+    requiredVersion = 1.0;
+    requiredAddons[] = {"A3_Data_F"};
+    addonRootClass = "A3_Data_F";
+  };
+};`
+
+function createConfigFile (missions) {
+  const configFile = path.join(outputDirectory, 'config.cpp')
+  const missionsClasses = missions.map((mission) =>
+    `    class ${mission.split('.')[0]}
+    {
+      directory = "${pboPrefix}\\${mission}";
+    };`
+  ).join('\n')
+  const configFileContent = `${configFileCfgPatches}
+class CfgMissions
+{
+  class MPMissions
+  {
+${missionsClasses}
+  };
+};
+`
+
+  return writeFile(configFile, configFileContent)
+}
+
+function createPboPrefixFile () {
+  const pboPrefixFile = path.join(outputDirectory, '$PBOPREFIX$')
+  return writeFile(pboPrefixFile, pboPrefix)
+}
+
+function packPbo () {
+  return new Promise((resolve, reject) => {
+    const pboFile = path.join(outputDirectory, 'jolly_green.pbo')
+    const packProcess = spawn('makepbo', ['-p', outputDirectory, pboFile], { stdio: 'inherit' })
+
+    packProcess.on('close', (code) => {
+      if (code > 0) {
+        return reject(new Error(`pbo pack process exited with code ${code}`))
+      }
+
+      resolve()
+    })
+  })
+}
+
+function createMod () {
+  const pboFile = path.join(outputDirectory, 'jolly_green.pbo')
+  const modDirectory = path.join(outputDirectory, '@jolly_green')
+  const addonsDirectory = path.join(modDirectory, 'addons')
+  const addonsPboFile = path.join(addonsDirectory, 'jolly_green.pbo')
+
+  return fs.emptyDir(addonsDirectory)
+    .then(() => fs.copy(pboFile, addonsPboFile))
+}
 
 function replaceUnits (content, units) {
   if (!units) {
@@ -67,22 +132,29 @@ function updateMission (missionDirectory, mod, type) {
 }
 
 function createWorldVersions (world) {
-  mods.map((mod) => {
+  return Promise.all(mods.map((mod) => {
+    const missionDirectoryName = `jolly_green${mod.suffix}_${world.name}.${world.name}`
     const missionWorldDirectory = path.join(worldsDirectory, world.mission)
     const missionWorldFile = path.join(missionWorldDirectory, 'mission.sqm')
-    const missionOutputDirectory = path.join(outputDirectory, `${world.name}${mod.suffix}`)
+    const missionOutputDirectory = path.join(outputDirectory, missionDirectoryName)
     const missionOutputFile = path.join(missionOutputDirectory, 'mission.sqm')
 
     return fs.emptyDir(missionOutputDirectory)
       .then(() => fs.copy(baseMissionDirectory, missionOutputDirectory))
       .then(() => fs.copy(missionWorldFile, missionOutputFile))
       .then(() => updateMission(missionOutputDirectory, mod, world.type))
-  })
+      .then(() => missionDirectoryName)
+  }))
 }
 
 function createWorlds () {
   return fs.emptyDir(outputDirectory)
     .then(() => Promise.all(worlds.map(createWorldVersions)))
+    .then((missions) => missions.flat())
+    .then((missions) => createConfigFile(missions))
+    .then(() => createPboPrefixFile())
+    .then(() => packPbo())
+    .then(() => createMod())
 }
 
 function readFile (file) {
