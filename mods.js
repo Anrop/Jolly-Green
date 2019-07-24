@@ -35,6 +35,37 @@ module.exports = [
     }
   },
   {
+    name: 'LDF',
+    suffix: '_ldf',
+    woodland: {
+      blufor: {
+        B_Heli_Transport_01_camo_F: 'I_E_Heli_light_03_unarmed_F',
+        B_helicrew_F: 'I_E_Helicrew_F',
+        B_Helipilot_F: 'I_E_Helipilot_F',
+        B_medic_F: 'I_E_Medic_F',
+        B_Pilot_F: 'I_E_Helipilot_F',
+        B_soldier_AAT_F: 'I_E_Soldier_LAT_F',
+        B_soldier_AR_F: 'I_E_Soldier_AR_F',
+        B_soldier_AT_F: 'I_E_Soldier_LAT_F',
+        B_Soldier_SL_F: 'I_E_Soldier_SL_F',
+        B_Soldier_TL_F: 'I_E_Soldier_TL_F'
+      },
+      redfor: {
+        '"OPF_F" >> "Infantry" >> "OIA_InfSquad"': '"OPF_R_F" >> "SpecOps" >> "O_R_InfSquad"',
+        O_APC_Tracked_02_cannon_F: 'O_APC_Tracked_02_cannon_F',
+        O_Heli_Light_02_unarmed_F: 'O_Heli_Light_02_unarmed_F',
+        O_medic_F: 'O_R_medic_F',
+        O_MRAP_02_F: 'O_MRAP_02_F',
+        O_MRAP_02_hmg_F: 'O_MRAP_02_hmg_F',
+        O_Soldier_AR_F: 'O_R_Soldier_AR_F',
+        O_Soldier_F: 'O_R_Soldier_GL_F',
+        O_Soldier_LAT_F: 'O_R_Soldier_LAT_F',
+        O_Soldier_SL_F: 'O_R_Soldier_TL_F',
+        O_Soldier_TL_F: 'O_R_Soldier_TL_F'
+      }
+    }
+  },
+  {
     name: 'SFP + CUP',
     suffix: '_sfp_cup',
     woodland: {
