@@ -20,6 +20,11 @@ module.exports = [
     type: 'winter'
   },
   {
+    name: 'enoch',
+    mission: 'enoch',
+    type: 'woodland'
+  },
+  {
     name: 'malden',
     mission: 'malden',
     type: 'desert'
