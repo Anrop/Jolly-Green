@@ -25,6 +25,16 @@ module.exports = [
     type: 'woodland'
   },
   {
+    name: 'gm_weferlingen_summer',
+    mission: 'gm_weferlingen_summer',
+    type: 'woodland'
+  },
+  {
+    name: 'gm_weferlingen_winter',
+    mission: 'gm_weferlingen_summer',
+    type: 'winter'
+  },
+  {
     name: 'malden',
     mission: 'malden',
     type: 'desert'
