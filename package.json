@@ -1,0 +1,21 @@
+{
+  "name": "jolly-green",
+  "version": "1.0.0",
+  "description": "",
+  "devDependencies": {
+    "fs-extra": "^8.1.0"
+  },
+  "dependencies": {},
+  "scripts": {
+    "build": "node generateMissions.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anrop/jolly-green.git"
+  },
+  "author": "Anrop",
+  "bugs": {
+    "url": "https://github.com/Anrop/jolly-green/issues"
+  },
+  "homepage": "https://github.com/Anrop/jolly-green#readme"
+}
