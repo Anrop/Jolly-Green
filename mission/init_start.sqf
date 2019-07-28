@@ -8,7 +8,7 @@ SHK_heliMoved = false;
 SHK_startPos = ["mArea",0,"mBL",heli] call SHK_pos;
 
 private "_b";
-_b = "2Rnd_GBU12_LGB" createVehicle [(SHK_startPos select 0),(SHK_startPos select 1),5]; //Bo_GBU12_LGB
+_b = "Bo_GBU12_LGB" createVehicle [(SHK_startPos select 0),(SHK_startPos select 1),5]; //Bo_GBU12_LGB
 [_b] spawn {
   waituntil {isNull (_this select 0)};
   heliWreck setpos [(SHK_startPos select 0),(SHK_startPos select 1),0];
