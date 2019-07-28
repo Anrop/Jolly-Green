@@ -37,6 +37,7 @@ if (PARAMS_Hour == 99) then {
 // Add some AT to the chopper wreck
 heliWreck addMagazineCargo ["NLAW_F",6];
 heliWreck addWeaponCargo ["launch_NLAW_F",2];
+heliWreck allowDamage false;
 
 // Weather
 skipTime -24;
