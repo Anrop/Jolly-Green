@@ -150,7 +150,7 @@ function createWorldVersions (world) {
 function createWorlds () {
   return fs.emptyDir(outputDirectory)
     .then(() => Promise.all(worlds.map(createWorldVersions)))
-    .then((missions) => missions.flat())
+    .then((missions) => flatten(missions))
     .then((missions) => createConfigFile(missions))
     .then(() => createPboPrefixFile())
     .then(() => packPbo())
@@ -180,5 +180,9 @@ function writeFile (file, content) {
     })
   })
 }
+
+const flatten = list => list.reduce(
+    (a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []
+)
 
 createWorlds()
