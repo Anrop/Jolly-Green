@@ -20,6 +20,11 @@ module.exports = [
     type: 'winter'
   },
   {
+    name: 'csj_sea',
+    mission: 'csj_sea',
+    type: 'woodland'
+  },
+  {
     name: 'enoch',
     mission: 'enoch',
     type: 'woodland'
