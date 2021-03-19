@@ -16,3 +16,8 @@ _b = "Bo_GBU12_LGB" createVehicle [(SHK_startPos select 0),(SHK_startPos select 
   heliWreck setdir (random 360);
   heliWreck setvelocity [0,0,0];
 };
+
+private _heliPos = getPos heli;
+heli setPos [(_heliPos select 0),(_heliPos select 1),0];
+heli setVectorUp [0,0,1];
+heli setVelocity [0,0,0];
