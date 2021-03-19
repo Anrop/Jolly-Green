@@ -5,14 +5,14 @@ const path = require('path')
 const mods = require('./mods')
 const worlds = require('./worlds')
 
-const outputDirectory = 'build'
+const outputDirectory = path.join('addons', 'missions')
 const baseMissionDirectory = 'mission'
 const worldsDirectory = 'worlds'
 
-const pboPrefix = 'jolly_green'
+const pboPrefix = 'anrop_jolly_green_missions'
 const configFileCfgPatches = `class CfgPatches
 {
-  class jolly_green_missions
+  class anrop_jolly_green_missions
   {
     units[] = {};
     weapons[] = {};
@@ -46,31 +46,6 @@ ${missionsClasses}
 function createPboPrefixFile () {
   const pboPrefixFile = path.join(outputDirectory, '$PBOPREFIX$')
   return writeFile(pboPrefixFile, pboPrefix)
-}
-
-function packPbo () {
-  return new Promise((resolve, reject) => {
-    const pboFile = path.join(outputDirectory, 'jolly_green.pbo')
-    const packProcess = spawn('makepbo', ['-p', outputDirectory, pboFile], { stdio: 'inherit' })
-
-    packProcess.on('close', (code) => {
-      if (code > 0) {
-        return reject(new Error(`pbo pack process exited with code ${code}`))
-      }
-
-      resolve()
-    })
-  })
-}
-
-function createMod () {
-  const pboFile = path.join(outputDirectory, 'jolly_green.pbo')
-  const modDirectory = path.join(outputDirectory, '@jolly_green')
-  const addonsDirectory = path.join(modDirectory, 'addons')
-  const addonsPboFile = path.join(addonsDirectory, 'jolly_green.pbo')
-
-  return fs.emptyDir(addonsDirectory)
-    .then(() => fs.copy(pboFile, addonsPboFile))
 }
 
 function replaceUnits (content, units) {
@@ -153,8 +128,6 @@ function createWorlds () {
     .then((missions) => flatten(missions))
     .then((missions) => createConfigFile(missions))
     .then(() => createPboPrefixFile())
-    .then(() => packPbo())
-    .then(() => createMod())
 }
 
 function readFile (file) {

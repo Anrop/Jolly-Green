@@ -12,13 +12,14 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'npm run build' 
+                bat 'npm run build'
+                bat 'hemtt build --release' 
             }
         }
 
         stage('Archive Build') {
             steps {
-                archiveArtifacts artifacts: 'build/@jolly_green/**/*'
+                archiveArtifacts artifacts: 'releases/0.0.0/@anrop_jolly_green/**/*'
             }
         }
 
@@ -28,7 +29,7 @@ pipeline {
             }
 
             steps {
-                publishSteamWorkshop '1818018494', 'build/@jolly_green', env.GIT_COMMIT
+                publishSteamWorkshop '1818018494', 'releases/0.0.0/@anrop_jolly_green', env.GIT_COMMIT
             }
         }
     }

@@ -88,4 +88,13 @@ typings/
 .dynamodb/
 
 # Build directory
-build/
+addons/*
+
+# HEMTT
+*.biprivatekey
+*.dll
+*.exe
+*.pbo
+.hemtt/local
+keys/*
+releases/*
