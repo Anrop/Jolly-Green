@@ -35,6 +35,37 @@ module.exports = [
     }
   },
   {
+    name: 'GM',
+    suffix: '_gm',
+    woodland: {
+      blufor: {
+        B_Heli_Transport_01_camo_F: 'gm_ge_army_ch53g',
+        B_helicrew_F: 'gm_ge_army_crew_mp2a1_80_oli',
+        B_Helipilot_F: 'gm_ge_army_crew_mp2a1_80_oli',
+        B_medic_F: 'gm_ge_army_medic_g3a3_80_ols',
+        B_Pilot_F: 'gm_ge_army_crew_mp2a1_80_oli',
+        B_soldier_AAT_F: 'gm_ge_army_antitank_assistant_g3a3_pzf44_80_ols',
+        B_soldier_AR_F: 'gm_ge_army_machinegunner_mg3_80_ols',
+        B_soldier_AT_F: 'gm_ge_army_antitank_g3a3_pzf44_80_ols',
+        B_Soldier_SL_F: 'gm_ge_army_squadleader_g3a3_p2a1_80_ols',
+        B_Soldier_TL_F: 'gm_ge_army_squadleader_g3a3_p2a1_80_ols'
+      },
+      redfor: {
+        '"OPF_F" >> "Infantry" >> "OIA_InfSquad"': '"gm_gc_army" >> "gm_infantry" >> "gm_gc_army_infantry_squad_str"',
+        O_APC_Tracked_02_cannon_F: 'gm_gc_army_btr60pb',
+        O_Heli_Light_02_unarmed_F: 'gm_gc_airforce_mi2t',
+        O_medic_F: 'gm_gc_army_medic_mpiak74n_80_str',
+        O_MRAP_02_F: 'gm_gc_army_p601',
+        O_MRAP_02_hmg_F: 'gm_gc_army_brdm2',
+        O_Soldier_AR_F: 'gm_gc_army_machinegunner_lmgrpk_80_str',
+        O_Soldier_F: 'gm_gc_army_rifleman_mpiak74n_80_str',
+        O_Soldier_LAT_F: 'gm_gc_army_antitank_mpiak74n_rpg7_80_str',
+        O_Soldier_SL_F: 'gm_gc_army_squadleader_mpiak74n_80_str',
+        O_Soldier_TL_F: 'gm_gc_army_squadleader_mpiak74n_80_str'
+      }
+    }
+  },
+  {
     name: 'GM + CUP',
     suffix: '_gm_cup',
     woodland: {
