@@ -3,9 +3,9 @@ Author="Shuko";
 debriefing=1;
 disabledAI=1;
 loadScreen = "overview.paa";
-onLoadIntroTime = false;
+onLoadIntroTime = 0;
 onLoadMission = "Combat Search and Rescue";
-onLoadMissionTime = false;
+onLoadMissionTime = 0;
 onLoadName="CSAR Jolly Green 28";
 overviewPicture = "\a3\missions_f_gamma\data\img\faction_blufor_air_ca.paa";
 overviewText = "Combat Search and Rescue is sent to find the crew and troops of a downed helo.";
@@ -20,7 +20,7 @@ showWatch=1;
 
 class Header
 {
-  gameType = COOP;
+  gameType = "COOP";
   minPlayers = 1;
   maxPlayers = 11;
 };
@@ -108,7 +108,7 @@ class RscStdText {
   style             = 0x02;
   colorBackground[] = {0,0,0,0};
   colorText[]       = {1,1,1,1};
-  font              = puristaMedium;
+  font              = "puristaMedium";
   SizeEx            = 0.02;
 };
 class RscTitles {
@@ -120,7 +120,7 @@ class RscTitles {
     duration     = 3;
     fadein       = 1;
     name         = "missionName";
-    controls[]={background,title};
+    controls[]={"background","title"};
     
     class background : RscStdText 
     {
