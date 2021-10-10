@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "devDependencies": {
-    "fs-extra": "^8.1.0"
+    "fs-extra": "^10.0.0"
   },
   "dependencies": {},
   "scripts": {
