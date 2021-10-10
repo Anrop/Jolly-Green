@@ -5,6 +5,11 @@ module.exports = [
     type: 'desert'
   },
   {
+    name: 'cam_lao_nam',
+    mission: 'cam_lao_nam',
+    type: 'woodland'
+  },
+  {
     name: 'chernarus',
     mission: 'chernarus',
     type: 'woodland'
@@ -52,6 +57,11 @@ module.exports = [
   {
     name: 'tanoa',
     mission: 'tanoa',
+    type: 'woodland'
+  },
+  {
+    name: 'vn_khe_sanh',
+    mission: 'vn_khe_sanh',
     type: 'woodland'
   }
 ]
