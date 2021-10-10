@@ -159,6 +159,37 @@ module.exports = [
     }
   },
   {
+    name: 'S.O.G Prairie Fire',
+    suffix: '_vn',
+    woodland: {
+      blufor: {
+        B_Heli_Transport_01_camo_F: 'vn_b_air_uh1c_07_07',
+        B_helicrew_F: 'vn_b_men_aircrew_05',
+        B_Helipilot_F: 'vn_b_men_aircrew_06',
+        B_medic_F: 'vn_b_men_sog_20',
+        B_Pilot_F: 'vn_b_men_aircrew_05',
+        B_soldier_AAT_F: 'vn_b_men_sog_08',
+        B_soldier_AR_F: 'vn_b_men_sog_16',
+        B_soldier_AT_F: 'vn_b_men_sog_08',
+        B_Soldier_SL_F: 'vn_b_men_sog_04',
+        B_Soldier_TL_F: 'vn_b_men_sog_13'
+      },
+      redfor: {
+        '"OPF_F" >> "Infantry" >> "OIA_InfSquad"': '"VN_PAVN" >> "vn_o_group_men_nva" >> "vn_o_group_men_nva_01"',
+        O_APC_Tracked_02_cannon_F: 'vn_o_armor_type63_01',
+        O_Heli_Light_02_unarmed_F: 'vn_o_air_mi2_01_01',
+        O_medic_F: 'vn_o_men_nva_08',
+        O_MRAP_02_F: 'vn_o_wheeled_btr40_01',
+        O_MRAP_02_hmg_F: 'vn_o_wheeled_btr40_mg_02',
+        O_Soldier_AR_F: 'vn_o_men_nva_11',
+        O_Soldier_F: 'vn_o_men_nva_04',
+        O_Soldier_LAT_F: 'vn_o_men_nva_14',
+        O_Soldier_SL_F: 'vn_o_men_nva_02',
+        O_Soldier_TL_F: 'vn_o_men_nva_01'
+      }
+    }
+  },
+  {
     name: 'Unsung',
     suffix: '_unsung',
     woodland: {
